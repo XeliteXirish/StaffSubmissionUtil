@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home &bull; Logbot</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
+    <link rel="stylesheet" href="css/banner.css">
+    <script src="https://use.fontawesome.com/337fb33ac6.js"></script>
+    <link rel="stylesheet" href="/css/discord/icon-discord.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=201610241153">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png?v=201610241153" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png?v=201610241153" sizes="16x16">
+    <link rel="manifest" href="/manifest.json?v=201610241153">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=201610241153" color="#468fcc">
+    <link rel="shortcut icon" href="/favicon.ico?v=201610241153">
+
+    <meta name="author" content="XeliteXirish">
+    <meta name="description" content="Open-Source dev team">
+
+    <meta name="apple-mobile-web-app-title" content="Logbot">
+    <meta name="application-name" content="Logbot">
+    <meta name="theme-color" content="#00c0fc">
+</head>
+
+<body>
+<section id="hero_section" class="hero is-info is-medium logbot">
+    <div class="hero-head">
+        <nav class="nav has-shadow">
+            <div class="container">
+
+                <div class="nav-left">
+                    <%- include partials/title.ejs %>
+                </div>
+
+                <span class="nav-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                </span>
+
+                <div class="nav-center">
+                    <%- include partials/username.ejs %>
+                </div>
+
+                <div class="nav-right nav-menu">
+                    <a class="nav-item is-active" href="/">Home</a>
+                    <a class="nav-item" href="/applications">Applications</a>
+
+                    <p class="nav-item control has-addons">
+                        <%- include partials/login.ejs %>
+                    </p>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title is-1">
+                SSL - Staff Application
+            </h1>
+            <h2 class="subtitle is-4">
+                <span>Submit you're request to join our awesome team over at SSL!</span>
+            </h2>
+        </div>
+    </div>
+</section>
+
+<section class="hero is-info is-small is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <nav class="columns">
+                <div class="column has-text-centered">
+                    <span class="icon is-large">
+                        <i class="fa fa-code"></i>
+                    </span>
+                    <p class="title is-4">Keep track of your members!</p>
+                </div>
+
+                <div class="column has-text-centered">
+                    <span class="icon is-large">
+                        <i class="fa fa-cog"></i>
+                    </span>
+                    <p class="title is-4">Easy to configure everything!</p>
+                </div>
+
+                <div class="column has-text-centered">
+                    <span class="icon is-large">
+                        <i class="fa fa-sort-alpha-asc"></i>
+                    </span>
+                    <p class="title is-4">Automatically sorted messages!</p>
+                </div>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="hero is-light is-bold is-medium">
+    <div class="hero-body">
+        <div class="container">
+            <div class="tile is-ancestor">
+                <div class="tile is-vertical is-8">
+                    <div class="tile is-parent">
+                        <div class="tile is-child">
+                            <p class="title is-2">Increase <strong>moderation</strong> activity on all servers!</p>
+                            <p class="subtitle is-4">This bot provides an easier medium for moderators to moderate
+                                chats.</p>
+                            <p>
+                                No matter how many people your discord server has, LogBot will make sure it records
+                                everything. No more will you have to rely on screenshots to view deleted message
+                                conversations!
+                                <br>
+                                <small style="float: right">Nothing is ever deleted...</small>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="tile">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="hero is-primary is-bold is-small">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title"><strong>~ Bot Information ~</strong></p>
+            <br>
+
+            <nav class="columns">
+                <div class="column">
+                    <p class="heading"><strong>Total Server<%= rawServerCount == 1 ? "" : "s" %></strong></p>
+                    <p class="title is-2"><%= rawServerCount %></p>
+                </div>
+
+                <div class="column">
+                    <p class="heading"><strong>Total User<%= rawUserCount == 1 ? "" : "s" %></strong></p>
+                    <p class="title is-2"><%= rawUserCount %></p>
+                </div>
+
+                <div class="column" title="<%= rawUptime %>">
+                    <p class="heading"><strong>Instance Uptime</strong></p>
+                    <p class="title is-2"><%= roundedUptime %></p>
+                </div>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="hero is-light is-bold is-medium">
+    <div class="hero-body">
+        <div class="container">
+            <div class="has-text-centered">
+                <h2 class="title is-2"><strong>~ The Authors ~</strong></h2>
+                <h4 class="subtitle is-4"><i>Even those who helped out in version one!</i></h4>
+            </div>
+            <br><br>
+
+            <div class="columns">
+                <div class="column">
+                    <center>
+                        <div class="card" style="text-align: center; width: 300px;">
+                            <div class="card-image">
+                                <figure class="image is-square">
+                                    <img src="https://www.shaunoneill.com/assets/logo.png">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class="title is-3">&bull;&nbsp;XeliteXirish</p>
+                                        <p class="subtitle is-5">Original creator and maintainer!</p>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <br>
+                                    <a href="https://www.shaunoneill.com">Website</a> - <a
+                                            href="https://www.github.com/XeliteXirish">Github</a> - <a
+                                            href="https://www.twitter.com/XeliteXirish">Twitter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+                <div class="column">
+                    <center>
+                        <div class="card" style="text-align: center; width: 300px;">
+                            <div class="card-image">
+                                <figure class="image is-square">
+                                    <img src="https://oskikiboy.github.io/img/icon.png">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class="title is-3">&bull;&nbsp;oskikiboy</p>
+                                        <p class="subtitle is-5">Version 2 Website <br>Developer!</p>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <br>
+                                    <a href="https://oskikiboy.github.io/">Website</a> -
+                                    <a href="https://github.com/oskikiboy">Github</a>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+                <div class="column">
+                    <center>
+                        <div class="card" style="text-align: center; width: 300px;">
+                            <div class="card-image">
+                                <figure class="image is-square">
+                                    <img src="/img/kingvlad.png">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class="title is-3">&bull;&nbsp;King Vlad</p>
+                                        <p class="subtitle is-5">Version one utility programmer!</p>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <br>
+                                    <a href="http://kingdgrizzle.weebly.com/">Website</a> - <a
+                                            href="https://github.com/KingDGrizzle">Github</a> - <a
+                                            href="https://twitter.com/KingDGrizzle">Twitter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="hero is-small is-danger is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h2 class="title is-2">Found a bug somewhere?</h2>
+            <h3 class="subtitle is-4">Create an issue on the <a
+                        href="https://github.com/XeliteXirish/Logbot-v2"><strong>Github</strong></a> or submit a
+                <strong>pull-request</strong>!</h3>
+        </div>
+    </div>
+</section>
+
+
+<%- include partials/footer.ejs %>
+
+</body>
+</html>

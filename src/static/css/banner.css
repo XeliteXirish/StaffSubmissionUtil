@@ -1,0 +1,6 @@
+.logbot{
+     background-image:linear-gradient(225deg, rgb(26, 75, 183) 0%, rgb(19, 49, 102) 50%, rgb(11, 9, 38) 100%);
+ }
+.error{
+    background-image:linear-gradient(225deg, rgb(191, 11, 11) 0%, rgb(195, 37, 11) 50%, rgb(143, 41, 0) 100%);
+}
