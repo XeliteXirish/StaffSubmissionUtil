@@ -58,7 +58,7 @@
     <div class="hero-body">
         <div class="container has-text-centered">
             <h1 class="title is-1">
-                SSL - Staff Application
+                <strong>SSL - Staff Applications</strong>
             </h1>
             <h2 class="subtitle is-4">
                 <span>Submit you're request to join our awesome team over at SSL!</span>
@@ -67,176 +67,157 @@
     </div>
 </section>
 
-<section class="hero is-info is-small is-bold">
+<section class="hero is-dark is-small is-bold">
     <div class="hero-body">
         <div class="container">
             <nav class="columns">
                 <div class="column has-text-centered">
                     <span class="icon is-large">
-                        <i class="fa fa-code"></i>
+                        <i class="fa fa-address-card" aria-hidden="true"></i>
                     </span>
-                    <p class="title is-4">Keep track of your members!</p>
+                    <p class="title is-4">Have an important role in our community!</p>
                 </div>
 
                 <div class="column has-text-centered">
                     <span class="icon is-large">
-                        <i class="fa fa-cog"></i>
+                        <i class="fa fa-users" aria-hidden="true"></i>
                     </span>
-                    <p class="title is-4">Easy to configure everything!</p>
+                    <p class="title is-4">Work with our amazing staff team!</p>
                 </div>
 
                 <div class="column has-text-centered">
                     <span class="icon is-large">
-                        <i class="fa fa-sort-alpha-asc"></i>
+                        <i class="fa fa-commenting" aria-hidden="true"></i>
                     </span>
-                    <p class="title is-4">Automatically sorted messages!</p>
+                    <p class="title is-4">Help moderate a server with over 10k people!</p>
                 </div>
             </nav>
         </div>
     </div>
 </section>
 
-<section class="hero is-light is-bold is-medium">
-    <div class="hero-body">
-        <div class="container">
-            <div class="tile is-ancestor">
-                <div class="tile is-vertical is-8">
-                    <div class="tile is-parent">
-                        <div class="tile is-child">
-                            <p class="title is-2">Increase <strong>moderation</strong> activity on all servers!</p>
-                            <p class="subtitle is-4">This bot provides an easier medium for moderators to moderate
-                                chats.</p>
-                            <p>
-                                No matter how many people your discord server has, LogBot will make sure it records
-                                everything. No more will you have to rely on screenshots to view deleted message
-                                conversations!
-                                <br>
-                                <small style="float: right">Nothing is ever deleted...</small>
+<section class="section">
+    <div class="container">
+        <div class="heading">
+            <h1 class="title is-3">&bull;&nbsp;Applying for staff in <a href="https://www.discord.gg/ssl">Scammer Sub
+                    Lounge</a>?</h1>
+            <h2 class="subtitle is-4"><i>Read below for more information!</i></h2>
+        </div>
+        <hr>
+
+        <div class="columns">
+            <div class="column is-half">
+
+                <article class="message is-info">
+                    <div class="message-header">
+                        <p>Management Department</p>
+                    </div>
+                    <div class="message-body">
+                        Stuff about management here
+                    </div>
+                </article>
+            </div>
+            <div class="column is-half">
+                <article class="message is-info">
+                    <div class="message-header">
+                        <p>Management Department</p>
+                    </div>
+                    <div class="message-body">
+                        Stuff about management here
+                    </div>
+                </article>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <div class="heading">
+            <h1 class="title is-5"><strong>&bull;&nbsp;Your Application:</strong></h1>
+        </div>
+        <hr>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Username</label>
+            </div>
+            <div class="field-body">
+                <div class="field is-grouped">
+                    <p class="control is-expanded">
+                        <input class="input" value="<%= userRequest.username %>" disabled>
+                    </p>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">User ID</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            <p class="control is-expanded">
+                                <input class="input" value="<%= userRequest.id %>" disabled>
                             </p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <br>
 
-                    <div class="tile">
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Staff Position</label>
+            </div>
+            <div class="field-body">
+                <div class="field is-narrow">
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="selectPosition">
+                                <option>Management</option>
+                                <option>Moderation</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p id="invalidScamTypeMsg" class="help">&bull;&nbsp;Please read above for more information about
+                        this choice!</p>
+                </div>
+            </div>
+        </div>
+        <br>
 
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Current Age</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input id="submitAge" class="input">
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Timezone</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input id="submitTimezone" class="input" placeholder="GMT +1">
+                            </div>
+                            <p id="invalidNumberMsg" class="help">&bull;&nbsp;Please enter your current timezone. Eg:
+                                GMT + 1</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+        <br>
 
-<section class="hero is-primary is-bold is-small">
-    <div class="hero-body">
-        <div class="container has-text-centered">
-            <p class="title"><strong>~ Bot Information ~</strong></p>
-            <br>
-
-            <nav class="columns">
-                <div class="column">
-                    <p class="heading"><strong>Total Server<%= rawServerCount == 1 ? "" : "s" %></strong></p>
-                    <p class="title is-2"><%= rawServerCount %></p>
-                </div>
-
-                <div class="column">
-                    <p class="heading"><strong>Total User<%= rawUserCount == 1 ? "" : "s" %></strong></p>
-                    <p class="title is-2"><%= rawUserCount %></p>
-                </div>
-
-                <div class="column" title="<%= rawUptime %>">
-                    <p class="heading"><strong>Instance Uptime</strong></p>
-                    <p class="title is-2"><%= roundedUptime %></p>
-                </div>
-            </nav>
-        </div>
-    </div>
-</section>
-
-<section class="hero is-light is-bold is-medium">
-    <div class="hero-body">
-        <div class="container">
-            <div class="has-text-centered">
-                <h2 class="title is-2"><strong>~ The Authors ~</strong></h2>
-                <h4 class="subtitle is-4"><i>Even those who helped out in version one!</i></h4>
-            </div>
-            <br><br>
-
-            <div class="columns">
-                <div class="column">
-                    <center>
-                        <div class="card" style="text-align: center; width: 300px;">
-                            <div class="card-image">
-                                <figure class="image is-square">
-                                    <img src="https://www.shaunoneill.com/assets/logo.png">
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="media">
-                                    <div class="media-content">
-                                        <p class="title is-3">&bull;&nbsp;XeliteXirish</p>
-                                        <p class="subtitle is-5">Original creator and maintainer!</p>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <br>
-                                    <a href="https://www.shaunoneill.com">Website</a> - <a
-                                            href="https://www.github.com/XeliteXirish">Github</a> - <a
-                                            href="https://www.twitter.com/XeliteXirish">Twitter</a>
-                                </div>
-                            </div>
-                        </div>
-                    </center>
-                </div>
-                <div class="column">
-                    <center>
-                        <div class="card" style="text-align: center; width: 300px;">
-                            <div class="card-image">
-                                <figure class="image is-square">
-                                    <img src="https://oskikiboy.github.io/img/icon.png">
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="media">
-                                    <div class="media-content">
-                                        <p class="title is-3">&bull;&nbsp;oskikiboy</p>
-                                        <p class="subtitle is-5">Version 2 Website <br>Developer!</p>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <br>
-                                    <a href="https://oskikiboy.github.io/">Website</a> -
-                                    <a href="https://github.com/oskikiboy">Github</a>
-                                </div>
-                            </div>
-                        </div>
-                    </center>
-                </div>
-                <div class="column">
-                    <center>
-                        <div class="card" style="text-align: center; width: 300px;">
-                            <div class="card-image">
-                                <figure class="image is-square">
-                                    <img src="/img/kingvlad.png">
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="media">
-                                    <div class="media-content">
-                                        <p class="title is-3">&bull;&nbsp;King Vlad</p>
-                                        <p class="subtitle is-5">Version one utility programmer!</p>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <br>
-                                    <a href="http://kingdgrizzle.weebly.com/">Website</a> - <a
-                                            href="https://github.com/KingDGrizzle">Github</a> - <a
-                                            href="https://twitter.com/KingDGrizzle">Twitter</a>
-                                </div>
-                            </div>
-                        </div>
-                    </center>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 

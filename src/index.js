@@ -10,14 +10,16 @@ const passport = require('passport');
 const DiscordS = require('passport-discord').Strategy;
 const bodyParser = require('body-parser');
 const nodemon = require('nodemon');
+const ejs = require('ejs');
 const mysql = require('mysql');
 
 const app = exports.app = express();
 let connection;
 
-const web = require('./modules/web');
-const auth = require('./modules/auth');
-const utils = require('./utils');
+const auth = exports.auth = require('./modules/auth');
+const web = exports.web = require('./modules/web');
+
+let utils = require('./utils');
 
 try {
 
@@ -41,6 +43,29 @@ try {
         maxAge: 12 * 60 * 60 * 1000 // 48 hours
     }));
 
+} catch (err) {
+
+    console.error(`An error occurred during Web initialisation, Error: ${err.stack}`);
+}
+
+try {
+
+    auth(config, app, passport, DiscordS);
+    web(app, config);
+
+    utils.createTable().catch(err => {
+        console.err(err.stack)
+    });
+    utils.createUserTable().catch(err => {
+        console.err(err.stack)
+    });
+
+} catch (err) {
+    console.error(`An error occurred during module initialisation, Error: ${err.stack}`);
+}
+
+// Set up final server
+try {
     const httpServer = http.createServer(app);
     httpServer.listen(config.server_port, (err) => {
         if (err) {
@@ -49,15 +74,10 @@ try {
         }
         console.info(`Successfully started server..listening on port ${config.server_port}`);
     })
-
-    utils.createTable();
-    utils.createUserTable();
-
-    web(app, config);
-    auth(config, app, passport, DiscordS);
-
-    console.log(` ~ Successfully started all application services! ~ `)
-
 }catch (err){
-    console.error(`An error occurred during Web initialisation, Error: ${err.stack}`);
+    console.error(`Error starting up server, Error: ${err.stack}`)
 }
+
+process.on('uncaughtException', (err) => {
+    console.error('Uncaught Exception' + err.stack);
+});
