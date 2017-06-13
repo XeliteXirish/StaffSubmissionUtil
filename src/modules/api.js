@@ -34,7 +34,7 @@ exports.init = function (app) {
                 utils.isUserBanned(req.user.id).then(isBanned => {
                     if (isBanned) return res.status(401).send(`Sorry but you have been banned from posting numbers! Contact @XeliteXirish if you feel this was a mistake!`);
 
-                    utils.submitApzplication(username, userId, position, age, timezone, country, experience, reason).then(() => {
+                    utils.submitApplication(username, userId, position, age, timezone, country, experience, reason).then(() => {
                         res.status(200).send(`Successfully submit application for ${req.user.username}`);
                     }).catch(err => {
                         console.error(`Unable to submit application, Error: ${err.stack}`);
