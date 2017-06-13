@@ -58,7 +58,7 @@ module.exports = function (config, app, passport, DiscordS) {
             return;
         }
 
-        res.redirect(req.session.redirect);
+        res.redirect('/'); // Ah who cares
     });
 
     app.get('/info', checkAuth, (req, res) => {

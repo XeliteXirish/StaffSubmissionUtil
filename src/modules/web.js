@@ -37,6 +37,21 @@ module.exports = function (app, config) {
             console.error(`Error loading applications page, Error: ${err.stack}`);
             renderErrorPage(req, res, err);
         }
+    });
+
+    //404 Error page (Must be the last route!)
+    app.use(function (req, res, next) {
+        try {
+            res.render('error', {
+                loggedInStatus: req.isAuthenticated(),
+                userRequest: req.user || false,
+                error_code: 404,
+                error_text: "The page you requested could not be found or rendered. Please check your request URL for spelling errors and try again. If you believe this error is faulty, please contact a system administrator.",
+            })
+        } catch (err) {
+            console.error(`An error has occurred trying to load the 404 page, Error: ${err.stack}`);
+            renderErrorPage(req, res, err);
+        }
     })
 };
 
