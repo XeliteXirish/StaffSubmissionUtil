@@ -19,6 +19,8 @@
     <meta name="apple-mobile-web-app-title" content="SSLStaffSubmissions">
     <meta name="application-name" content="SSLStaffSubmissions">
     <meta name="theme-color" content="#00c0fc">
+
+    <script src="js/jquery-2.2.0.min.js"></script>
 </head>
 
 <body>
@@ -111,7 +113,7 @@
         <div class="columns">
             <div class="column is-half">
 
-                <article class="message is-info">
+                <article id="manInfo" class="message is-info">
                     <div class="message-header">
                         <p>&bull;&nbsp;Management Department</p>
                     </div>
@@ -126,7 +128,7 @@
                 </article>
             </div>
             <div class="column is-half">
-                <article class="message is-info">
+                <article id="modInfo" class="message is-info">
                     <div class="message-header">
                         <p>&bull;&nbsp;Moderation Department</p>
                     </div>
@@ -328,6 +330,9 @@
 </section>
 
 <script src="/js/submit.js"></script>
+<script>
+    $("#manInfo").height($("#modInfo").height());
+</script>
 <%- include partials/footer.ejs %>
 
 </body>
