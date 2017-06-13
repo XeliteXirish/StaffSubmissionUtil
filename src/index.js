@@ -18,6 +18,7 @@ let connection;
 
 const auth = exports.auth = require('./modules/auth');
 const web = exports.web = require('./modules/web');
+const api = exports.web = require('./modules/api');
 
 let utils = require('./utils');
 
@@ -40,7 +41,7 @@ try {
     app.use(cookieSession({
         name: 'loginSession',
         keys: [config.clientID, config.session_secret],
-        maxAge: 12 * 60 * 60 * 1000 // 48 hours
+        maxAge: 2 * 60 * 60 * 1000 // 48 hours
     }));
 
 } catch (err) {
@@ -52,6 +53,7 @@ try {
 
     auth(config, app, passport, DiscordS);
     web(app, config);
+    api.init(app);
 
     utils.createTable().catch(err => {
         console.err(err.stack)

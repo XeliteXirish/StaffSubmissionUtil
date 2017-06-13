@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Unauthorised &bull; Staff Submission</title>
+    <title>Applications &bull; Staff Submission</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
     <link rel="stylesheet" href="/css/banner.css">
@@ -19,6 +19,8 @@
     <meta name="apple-mobile-web-app-title" content="SSLStaffSubmissions">
     <meta name="application-name" content="SSLStaffSubmissions">
     <meta name="theme-color" content="#00c0fc">
+
+    <script src="js/jquery-2.2.0.min.js"></script>
 </head>
 
 <body>
@@ -45,7 +47,7 @@
 
                 <div class="nav-right nav-menu">
                     <a class="nav-item" href="/">Home</a>
-                    <a class="nav-item" href="/applications">Applications</a>
+                    <a class="nav-item is-active" href="/applications">Applications</a>
 
                     <p class="nav-item control has-addons">
                         <%- include partials/login.ejs %>
@@ -68,24 +70,62 @@
 </section>
 
 <section class="section">
-    <div class="container has-text-centered box">
-        <div class="header">
-            <h1 class="title">
-                <strong><i>Unauthorised &bull; Not logged in!</i></strong>
-            </h1><br>
-            <h2 class="subtitle">
-                You must be logged in to access this!<br>You can login by clicking on the following button:
-                <br><br><br>
-                <a class="button is-primary" href="/login">
-  					<span class="icon">
-    					<i class="fa fa-sign-in" aria-hidden="true"></i>
-  					</span>
-                    <span>Sign in!</span>
-                </a>
-            </h2>
-        </div>
+    <table class="table is-stripped is-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th style="white-space: nowrap; overflow: hidden;">Username</th>
+            <th style="white-space: nowrap; overflow: hidden;">User ID</th>
+            <th style="white-space: nowrap; overflow: hidden;">Position</th>
+            <th style="white-space: nowrap; overflow: hidden;">Age</th>
+            <th style="white-space: nowrap; overflow: hidden;">Timezone</th>
+            <th style="white-space: nowrap; overflow: hidden;">Experience</th>
+            <th style="white-space: nowrap; overflow: hidden;">Reason</th>
+            <th style="white-space: nowrap; overflow: hidden;">Date (D/M/Y H/M/S)</th>
+        </tr>
+        </thead>
+
+        <tbody id="listTable">
+
+        <% if (staffApplications) { for (let x = 0; x < staffApplications.length; x++) { %>
+
+        <tr>
+            <td style="overflow: hidden;"><%= staffApplications[x].ID %></td>
+            <td style="white-space: nowrap; overflow: hidden;"><b><%= staffApplications[x].Username %></b></td>
+            <td style="white-space: nowrap; overflow: hidden;"><%= staffApplications[x].UserID %></td>
+            <td style="white-space: nowrap; overflow: hidden;"><b><%= staffApplications[x].Position %></b></td>
+            <td style="white-space: nowrap; overflow: hidden;"><b><%= staffApplications[x].Age %></b></td>
+            <td style="white-space: nowrap; overflow: hidden;"><%= staffApplications[x].TimeZone %></td>
+            <td style="overflow: hidden;"><b><%= staffApplications[x].Experience %></b></td>
+            <td style="overflow: hidden;"><b><%= staffApplications[x].Reason %></b></td>
+            <td style="white-space: nowrap; overflow: hidden;"><%= staffApplications[x].Date %></td>
+        </tr>
+
+        <% } } %>
+        </tbody>
+    </table>
+
+    <% if (!staffApplications || staffApplications.length === 0) { %>
+    <div class="notification is-danger has-text-centered">
+        <b> ~ Sorry but it appears that no applications have been submitted yet :'( ~ </b>
+        <br>
     </div>
+
+    <% } %>
 </section>
 
 <%- include partials/footer.ejs %>
+
+<script>
+    $("tr").not(':first').hover(
+        function () {
+            $(this).addClass('is-selected');
+        }, function () {
+            $(this).removeClass('is-selected');
+        }
+    );
+</script>
+
 </body>
+
+</html>

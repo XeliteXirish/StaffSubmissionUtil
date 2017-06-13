@@ -12,10 +12,29 @@ module.exports = function (app, config) {
         try {
             res.render('index', {
                 loggedInStatus: req.isAuthenticated(),
-                userRequest: req.user || false
+                userRequest: req.user || false,
+                moderationOpen: config.moderationOpen
             })
         } catch (err) {
             console.error(`Error loading index page, Error: ${err.stack}`);
+            renderErrorPage(req, res, err);
+        }
+    });
+
+    app.get('/applications', checkAuth, checkModerator, (req, res) => {
+        try {
+
+            utils.fetchStaffApplications().then(staffApplications => {
+                res.render('applications', {
+                    loggedInStatus: req.isAuthenticated(),
+                    userRequest: req.user || false,
+                    moderationOpen: config.moderationOpen,
+                    staffApplications: staffApplications
+                })
+            })
+
+        } catch (err) {
+            console.error(`Error loading applications page, Error: ${err.stack}`);
             renderErrorPage(req, res, err);
         }
     })
@@ -33,6 +52,30 @@ function checkAuth(req, res, next) {
             loggedInStatus: req.isAuthenticated(),
             userRequest: req.user || false
         });
+    } catch (err) {
+        console.error(`An error has occurred trying to check auth, Error: ${err.stack}`);
+        renderErrorPage(req, res, err);
+    }
+}
+
+function checkModerator(req, res, next) {
+    try {
+
+        utils.isUserModerator(req.user.id).then(isModerator => {
+            if (isModerator) return next();
+
+            req.session.redirect = req.path;
+            res.status(403);
+            res.render('unauthorised', {
+
+                loggedInStatus: req.isAuthenticated(),
+                userRequest: req.user || false
+            });
+        }).catch(err => {
+            console.error(`Error checking mod status, Error: ${err.stack}`);
+            renderErrorPage(req, res, err);
+        })
+
     } catch (err) {
         console.error(`An error has occurred trying to check auth, Error: ${err.stack}`);
         renderErrorPage(req, res, err);

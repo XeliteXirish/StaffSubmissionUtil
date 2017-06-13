@@ -1,3 +1,5 @@
+const utils = require('./../utils');
+
 module.exports = function (config, app, passport, DiscordS) {
 
     const scopes = [
@@ -36,7 +38,10 @@ module.exports = function (config, app, passport, DiscordS) {
 
     app.get('/login/callback', passport.authenticate('discord', {failureRedirect: '/error'}), (req, res) => {
         console.log(`- ${req.user.username} has logged on.`);
-        console.log(req.session.redirect)
+
+        utils.submitUsersToDb(req.user).catch(err => {
+            console.error(err.stack)
+        });
         if (!req.session.redirect) {
             res.render('error', {
                 discord_server: 'SSL - Staff Application',

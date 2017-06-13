@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home &bull; Logbot</title>
+    <title>Home &bull; Staff Submission</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
-    <link rel="stylesheet" href="css/banner.css">
+    <link rel="stylesheet" href="/css/banner.css">
+    <link rel="stylesheet" href="/css/snackbar.css">
     <script src="https://use.fontawesome.com/337fb33ac6.js"></script>
     <link rel="stylesheet" href="/css/discord/icon-discord.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=201610241153">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png?v=201610241153" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png?v=201610241153" sizes="16x16">
-    <link rel="manifest" href="/manifest.json?v=201610241153">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=201610241153" color="#468fcc">
-    <link rel="shortcut icon" href="/favicon.ico?v=201610241153">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="https://images-ext-1.discordapp.net/external/f9JFLQ8Wq2ue4aTtxB9voh0XrtJFfdrTLgUJlShyUrY/https/cdn.discordapp.com/icons/194533269180514305/7e12fb0d80893de9898cb9174835b357.jpg?width=89&height=89">
+    <link rel="shortcut icon"
+          href="https://images-ext-1.discordapp.net/external/f9JFLQ8Wq2ue4aTtxB9voh0XrtJFfdrTLgUJlShyUrY/https/cdn.discordapp.com/icons/194533269180514305/7e12fb0d80893de9898cb9174835b357.jpg?width=89&height=89">
 
     <meta name="author" content="XeliteXirish">
     <meta name="description" content="Open-Source dev team">
 
-    <meta name="apple-mobile-web-app-title" content="Logbot">
-    <meta name="application-name" content="Logbot">
+    <meta name="apple-mobile-web-app-title" content="SSLStaffSubmissions">
+    <meta name="application-name" content="SSLStaffSubmissions">
     <meta name="theme-color" content="#00c0fc">
 </head>
 
@@ -67,6 +66,8 @@
     </div>
 </section>
 
+<div id="snackbar"></div>
+
 <section class="hero is-dark is-small is-bold">
     <div class="hero-body">
         <div class="container">
@@ -95,6 +96,8 @@
         </div>
     </div>
 </section>
+
+<% if (moderationOpen) { %>
 
 <section class="section">
     <div class="container">
@@ -196,8 +199,10 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control">
-                        <input id="submitAge" class="input">
+                        <input id="submitAge" class="input" type="number">
                     </div>
+                    <p id="invalidNumberMsg" class="help">&bull;&nbsp;Lying about your age on your submission will get
+                        you demoted instantly!</p>
                 </div>
 
                 <div class="field is-horizontal">
@@ -218,21 +223,103 @@
         </div>
         <br>
 
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Current Country</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <textarea id="submitCountry" class="input"
+                                  placeholder="This is used so we can distribute staff evenly!"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Experience</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <textarea id="submitExperience" class="textarea"
+                                  placeholder="Please tell us about any moderation/management experience that you have!"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Why should you get staff</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <textarea id="submitReason" class="textarea"
+                                  placeholder="Please give us a quick explanation as to why you should be accepted to join our staff team!"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <p style="float: right">
+            <small><i><u>&bull;&nbsp;Please note, lying about any of these details will get you instantly demoted once
+                        we find out! Answer honestly!</u></i></small>
+        </p>
+        <br><br>
+
+        <div class="field" style="float: right;">
+            <div class="control">
+                <button class="button" onclick="resetFields()">Reset</button>
+                <button class="button is-primary" onclick="submitApplication()">
+                    Submit Number
+                </button>
+            </div>
+        </div>
+
     </div>
 </section>
+
+<% } else { %>
+<section class="hero is-info is-large">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <br><br><br><br><br><br>
+            <div class="heading">
+                <h1 class="title"><b>~ Sorry but it appears that submissions are not open right now! ~</b></h1><br>
+                <h2 class="subtitle is-4"><i>Feel free to check back again soon!</i></h2>
+            </div>
+            <br><br><br><br><br><br>
+        </div>
+    </div>
+</section>
+
+<% } %>
 
 <section class="hero is-small is-danger is-bold">
     <div class="hero-body">
         <div class="container has-text-centered">
             <h2 class="title is-2">Found a bug somewhere?</h2>
             <h3 class="subtitle is-4">Create an issue on the <a
-                        href="https://github.com/XeliteXirish/Logbot-v2"><strong>Github</strong></a> or submit a
+                        href="https://github.com/XeliteXirish/SSLStaffSubmission"><strong>Github</strong></a> or submit
+                a
                 <strong>pull-request</strong>!</h3>
+        </div>
+    </div>
+    <div class="hero-foot">
+        <div class="container has-text-centered">
+            <p>~ If the repo is private, just send me a message on discord :D Thanks ~</p>
         </div>
     </div>
 </section>
 
-
+<script src="/js/submit.js"></script>
 <%- include partials/footer.ejs %>
 
 </body>

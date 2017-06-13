@@ -9,9 +9,9 @@ exports.createTable = function () {
     Username TEXT,
     UserID VARCHAR(30),
     Position TEXT,
-    RealName TEXT,
     Age TEXT,
     TimeZone TEXT,
+    Country TEXT,
     Experience TEXT,
     Reason TEXT,
     Date DATETIME,
@@ -39,7 +39,8 @@ exports.createUserTable = function () {
     Username TEXT,
     UserId VARCHAR(30),
     Email TEXT,
-    Moderator TINYINT(1) DEFAULT 0
+    Moderator TINYINT(1) DEFAULT 0,
+    Banned TINYINT(1) DEFAULT 0
 );`;
 
         index.db.query(query, function (err, rows, fields) {
@@ -79,6 +80,21 @@ exports.submitUsersToDb = function (userReq) {
     });
 };
 
+exports.submitApplication = function (username, userId, position, age, timezone, country, experience, reason) {
+    return new Promise((resolve, reject) => {
+
+        let query = `INSERT INTO Submissions (Username, UserID, Position, Age, TimeZone, Country, Experience, Reason, Date) VALUES (${index.db.escape(username)}, ${index.db.escape(userId)}, ${index.db.escape(position)}, ${index.db.escape(age)}, ${index.db.escape(timezone)}, ${index.db.escape(country)}, ${index.db.escape(experience)}, ${index.db.escape(reason)}, ${index.db.escape(new Date())});`
+        index.db.query(query, function (err, rows, fields) {
+            if (err) {
+                console.error(`Error while creating submissions table, Error: ${err.stack}`);
+                console.error(`Error query: ${query}`);
+                return reject(err);
+            }
+            resolve();
+        })
+    });
+};
+
 /**
  * Check if the user has moderator perms
  * @param userId
@@ -102,4 +118,62 @@ exports.isUserModerator = function (userId) {
             resolve(isModerator);
         })
     });
+};
+
+/**
+ * Returns true if a user is banned from posting numbers
+ * @param userId
+ * @returns {Promise}
+ */
+exports.isUserBanned = function (userId) {
+    return new Promise((resolve, reject) => {
+
+        let query = `SELECT Banned FROM Users WHERE UserId=${index.db.escape(userId)}`;
+        index.db.query(query, function (err, rows, fields) {
+            if (err) {
+                console.error(`Error while checking if a user is banned, Error: ${err.stack}`);
+                console.error(`Error Query: ${query}`);
+                return reject(err);
+            }
+
+            let isBanned = false;
+            if (rows.length > 0) {
+                if (rows[0].Banned === 1) isBanned = true;
+            }
+
+            resolve(isBanned);
+        })
+    });
+};
+
+exports.fetchStaffApplications = function () {
+    return new Promise((resolve, reject) => {
+
+        let query = `SELECT * FROM Submissions;`;
+        index.db.query(query, function (err, rows, fields) {
+            if (err) {
+                console.error(`Error while checking if a user is banned, Error: ${err.stack}`);
+                console.error(`Error Query: ${query}`);
+                return reject(err);
+            }
+
+            let results = [];
+            for (let x = 0; x < rows.length; x++) {
+                rows[x].Date = exports.getDateString(rows[x].Date);
+
+                results.push(rows[x]);
+            }
+
+            resolve(results);
+        })
+    });
+};
+
+/**
+ * Converts a date into a nice format
+ * @param date
+ * @returns {string}
+ */
+exports.getDateString = function (date) {
+    return date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 };

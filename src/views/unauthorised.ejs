@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Error &bull; Staff Submission</title>
+    <title>Unauthorised &bull; Staff Submission</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
     <link rel="stylesheet" href="/css/banner.css">
@@ -22,11 +22,8 @@
 </head>
 
 <body>
-<script>
-    var isLoggedIn = "<%= loggedInStatus %>"
-</script>
 
-<section id="hero_section" class="hero is-danger is-medium error">
+<section id="hero_section" class="hero is-info is-medium logbot">
     <div class="hero-head">
         <nav class="nav has-shadow">
             <div class="container">
@@ -60,28 +57,36 @@
 
     <div class="hero-body">
         <div class="container has-text-centered">
-            <h1 class="title is-1">~ Error <%= error_code %> ~
+            <h1 class="title is-1">
+                <strong>SSL - Staff Applications</strong>
             </h1>
-            <br>
             <h2 class="subtitle is-4">
-                Snap, something hit a snag. :/
+                <span>Submit you're request to join our awesome team over at SSL!</span>
             </h2>
         </div>
     </div>
 </section>
 
 <section class="section">
-    <div class="container box has-text-centered ">
-        <h5 class="subtitle is-5 paragraph">
-            <%= error_code %>, let's talk about that.
-        </h5>
-        <br>
-        <p class="paragraph">
-            <%= error_text %>
-        </p>
+    <div class="container has-text-centered box">
+        <div class="header">
+            <h1 class="title">
+                <strong><i>Unauthorised &bull; Sorry but it appears you dont meet moderator requirements to view this
+                        page!</i></strong>
+            </h1><br>
+            <h2 class="subtitle">
+                You must be a moderator in able to use this page!
+                <br><br><br>
+                <a class="button is-primary" href="https://www.discord.gg/ssl">
+  					<span class="icon">
+    					<i class="fa fa-sign-in" aria-hidden="true"></i>
+  					</span>
+                    <span>Join Scammer Sub Lounge</span>
+                </a>
+            </h2>
+        </div>
     </div>
 </section>
 
 <%- include partials/footer.ejs %>
-
 </body>
