@@ -15,6 +15,6 @@ exports.init = function () {
 
 exports.newApplication = function (username, position) {
     if (isEnabled) {
-        webhook.send(`**${username}** has submit a staff application for **${position}! Check it out https://apply.sslcommunity.io/!`)
+        webhook.send(`**${username}** has submit a staff application for **${position}**! Check it out https://apply.sslcommunity.io/!`)
     }
 };
