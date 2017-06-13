@@ -12,6 +12,7 @@
     "body-parser": "latest",
     "connect-datadog": "0.0.6",
     "cookie-session": "latest",
+    "discord.js": "^11.1.0",
     "ejs": "^2.5.6",
     "express": "latest",
     "express-minify": "latest",

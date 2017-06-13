@@ -1,5 +1,6 @@
 const index = require('./../index');
 const utils = require('./../utils');
+const webhook = require('./webhook');
 
 const RateLimit = require("express-rate-limit");
 const regex = new RegExp('^[0-9]+$');
@@ -36,6 +37,7 @@ exports.init = function (app) {
 
                     utils.submitApplication(username, userId, position, age, timezone, country, experience, reason).then(() => {
                         res.status(200).send(`Successfully submit application for ${req.user.username}`);
+                        webhook.newApplication(username, position);
                     }).catch(err => {
                         console.error(`Unable to submit application, Error: ${err.stack}`);
                         res.status(400).send(`Unable to submit application, please try again later or contact @XeliteXirish!`);

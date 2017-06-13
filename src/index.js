@@ -19,6 +19,7 @@ let connection;
 const auth = exports.auth = require('./modules/auth');
 const web = exports.web = require('./modules/web');
 const api = exports.web = require('./modules/api');
+const webhook = exports.webhook = require('./modules/webhook');
 
 let utils = require('./utils');
 
@@ -62,6 +63,7 @@ try {
     auth(config, app, passport, DiscordS);
     web(app, config);
     api.init(app);
+    webhook.init();
 
     utils.createTable().catch(err => {
         console.err(err.stack)
