@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "latest",
+    "connect-datadog": "0.0.6",
     "cookie-session": "latest",
     "ejs": "^2.5.6",
     "express": "latest",

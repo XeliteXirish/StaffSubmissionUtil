@@ -31,6 +31,14 @@ try {
         database: config.sql_db
     });
 
+    let dd_options = {
+        'response_code': true,
+        'tags': ['app:my_app']
+    }
+
+    let connectDatadog = require('connect-datadog')(dd_options);
+
+    app.use(connectDatadog);
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(express.static('Web'));
