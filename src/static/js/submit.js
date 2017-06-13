@@ -38,11 +38,11 @@ function sendSubmit(position, age, timezone, country, experience, reason) {
             submitSuccessfull();
 
         } else if (this.readyState === 4 && this.status === 500) {
-            console.error(`Error while submitting you're application! Error: ${this.responseText}`);
+            console.error(`Error while submitting your application! Error: ${this.responseText}`);
             showSnackbar(`You were unable to submit that number.<br>Error: ${this.responseText}`);
 
         } else if (this.readyState === 4 && this.status === 401) {
-            console.error(`Error while submitting you're application! Error: ${this.responseText}`);
+            console.error(`Error while submitting your application! Error: ${this.responseText}`);
             showSnackbar(`You appear to be blocked from submitting applications! Please contact a member of senior staff!`);
         }
     };
@@ -65,7 +65,7 @@ function resetFields() {
 
 function submitSuccessfull() {
     console.log(`Successfully submit a staff application!`);
-    showSnackbar("You have successfully submit you're application! Submissions are open, but we may not be taking on staff right now!");
+    showSnackbar("You have successfully submit your application! Submissions are open, but we may not be taking on staff right now!");
     resetFields();
 }
 
