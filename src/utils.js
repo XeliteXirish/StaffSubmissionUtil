@@ -82,9 +82,9 @@ exports.submitUsersToDb = function (userReq) {
 
 exports.submitApplication = function (username, userId, position, age, timezone, country, experience, reason) {
     return new Promise((resolve, reject) => {
-
         let query = `INSERT INTO Submissions (Username, UserID, Position, Age, TimeZone, Country, Experience, Reason, Date) VALUES (${index.db.escape(username)}, ${index.db.escape(userId)}, ${index.db.escape(position)}, ${index.db.escape(age)}, ${index.db.escape(timezone)}, ${index.db.escape(country)}, ${index.db.escape(experience)}, ${index.db.escape(reason)}, ${index.db.escape(new Date())});`
         index.db.query(query, function (err, rows, fields) {
+
             if (err) {
                 console.error(`Error while creating submissions table, Error: ${err.stack}`);
                 console.error(`Error query: ${query}`);

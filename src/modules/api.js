@@ -36,13 +36,16 @@ exports.init = function (app) {
                     if (isBanned) return res.status(401).send(`Sorry but you have been banned from posting numbers! Contact @XeliteXirish if you feel this was a mistake!`);
 
                     utils.submitApplication(username, userId, position, age, timezone, country, experience, reason).then(() => {
-                        res.status(200).send(`Successfully submit application for ${req.user.username}`);
                         webhook.newApplication(username, position);
+                        res.status(200).send(`Successfully submit application for ${req.user.username}`);
+
                     }).catch(err => {
                         console.error(`Unable to submit application, Error: ${err.stack}`);
                         res.status(400).send(`Unable to submit application, please try again later or contact @XeliteXirish!`);
                     })
                 });
+            } else {
+                res.status(500).send("Sorry but you havn't submit all the required fields!")
             }
 
         } catch (err) {

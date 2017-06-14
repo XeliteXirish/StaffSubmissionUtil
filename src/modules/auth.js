@@ -67,7 +67,7 @@ module.exports = function (config, app, passport, DiscordS) {
 
     app.get('/logout', (req, res) => {
         req.logout();
-        res.redirect('/');
+        res.redirect(req.session.redirect);
     })
 };
 

@@ -61,9 +61,9 @@ try {
 try {
 
     auth(config, app, passport, DiscordS);
-    web(app, config);
     api.init(app);
     webhook.init();
+    web(app, config);
 
     utils.createTable().catch(err => {
         console.err(err.stack)
