@@ -13,7 +13,9 @@ module.exports = function (app, config) {
             res.render('index', {
                 loggedInStatus: req.isAuthenticated(),
                 userRequest: req.user || false,
-                moderationOpen: config.moderationOpen
+                moderationOpen: config.moderationOpen,
+                serverName: config.serverName,
+                serverInvite: config.serverInvite
             })
         } catch (err) {
             console.error(`Error loading index page, Error: ${err.stack}`);
@@ -29,7 +31,9 @@ module.exports = function (app, config) {
                     loggedInStatus: req.isAuthenticated(),
                     userRequest: req.user || false,
                     moderationOpen: config.moderationOpen,
-                    staffApplications: staffApplications
+                    staffApplications: staffApplications,
+                    serverName: config.serverName,
+                    serverInvite: config.serverInvite
                 })
             })
 
@@ -45,6 +49,8 @@ module.exports = function (app, config) {
             res.render('error', {
                 loggedInStatus: req.isAuthenticated(),
                 userRequest: req.user || false,
+                serverName: config.serverName,
+                serverInvite: config.serverInvite,
                 error_code: 404,
                 error_text: "The page you requested could not be found or rendered. Please check your request URL for spelling errors and try again. If you believe this error is faulty, please contact a system administrator.",
             })

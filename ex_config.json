@@ -1,6 +1,8 @@
 {
   "server_ip": "",
   "server_port": "",
+  "serverName": "",
+  "serverInvite": "",
   "host": "",
   "sql_host": "1",
   "sql_user": "",
