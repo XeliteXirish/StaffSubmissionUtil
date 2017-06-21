@@ -28,4 +28,4 @@ npm run
 SSLStaffSubmission is licensed under the GNU General Public License v3.0
 Basically you're welcome to change all the descriptions to your server needs, but you just have to leave the footer.
 
-You can view the licence [here](https://github.com/XeliteXirish/SSLStaffSubmission/blob/master/LICENCE.md)
+You can view the licence [here](https://github.com/XeliteXirish/StaffSubmissionUtil/blob/master/LICENCE.md)
