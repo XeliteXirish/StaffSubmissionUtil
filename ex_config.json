@@ -1,0 +1,15 @@
+{
+  "server_ip": "",
+  "server_port": "",
+  "host": "",
+  "sql_host": "1",
+  "sql_user": "",
+  "sql_db": "",
+  "sql_pass": "",
+  "clientID": "",
+  "clientSecret": "",
+  "session_secret": "",
+  "webhookId": "",
+  "webhookToken": "",
+  "moderationOpen": false
+}

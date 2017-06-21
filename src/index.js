@@ -30,7 +30,7 @@ try {
     let dd_options = {
         'response_code': true,
         'tags': ['app:my_app']
-    }
+    };
 
     let connectDatadog = require('connect-datadog')(dd_options);
 

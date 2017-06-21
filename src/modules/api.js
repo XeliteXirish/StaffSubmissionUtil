@@ -3,7 +3,6 @@ const utils = require('./../utils');
 const webhook = require('./webhook');
 
 const RateLimit = require("express-rate-limit");
-const regex = new RegExp('^[0-9]+$');
 
 exports.init = function (app) {
 
@@ -33,7 +32,7 @@ exports.init = function (app) {
             if (position && age && timezone && country && experience && reason) {
 
                 utils.isUserBanned(req.user.id).then(isBanned => {
-                    if (isBanned) return res.status(401).send(`Sorry but you have been banned from posting numbers! Contact @XeliteXirish if you feel this was a mistake!`);
+                    if (isBanned) return res.status(401).send(`Sorry but you have been banned from posting numbers! Contact server administration team if you feel this was a mistake!`);
 
                     utils.submitApplication(username, userId, position, age, timezone, country, experience, reason).then(() => {
                         webhook.newApplication(username, position);
@@ -41,16 +40,16 @@ exports.init = function (app) {
 
                     }).catch(err => {
                         console.error(`Unable to submit application, Error: ${err.stack}`);
-                        res.status(400).send(`Unable to submit application, please try again later or contact @XeliteXirish!`);
+                        res.status(400).send(`Unable to submit application, please try again later or contact the server administration team for help!!`);
                     })
                 });
             } else {
-                res.status(500).send("Sorry but you havn't submit all the required fields!")
+                res.status(500).send("Sorry but you have not submit all the required fields!")
             }
 
         } catch (err) {
             console.error(`Unable to submit application, Error: ${err.stack}`);
-            res.status(500).send('Unable to submit application, please try again later or contact @XeliteXirish!');
+            res.status(500).send('Unable to submit application, please try again later or contact server administration team!');
         }
     });
 
