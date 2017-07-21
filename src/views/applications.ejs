@@ -67,21 +67,27 @@
             </h2>
         </div>
     </div>
+
+    <div class="hero-foot">
+        <div class="container has-text-centered">
+            <p><i>~ Click on an application to view more information ~</i></p>
+        </div>
+    </div>
 </section>
 
 <section class="section">
-    <table class="table is-stripped is-bordered">
+    <table class="table is-stripped is-bordered" style="width: 100%;">
         <thead>
         <tr>
             <th>ID</th>
-            <th style="white-space: nowrap; overflow: hidden;">Username</th>
-            <th style="white-space: nowrap; overflow: hidden;">User ID</th>
-            <th style="white-space: nowrap; overflow: hidden;">Position</th>
-            <th style="white-space: nowrap; overflow: hidden;">Age</th>
-            <th style="white-space: nowrap; overflow: hidden;">Timezone</th>
-            <th style="white-space: nowrap; overflow: hidden;">Experience</th>
-            <th style="white-space: nowrap; overflow: hidden;">Reason</th>
-            <th style="white-space: nowrap; overflow: hidden;">Date (D/M/Y H/M/S)</th>
+            <th style="white-space: nowrap;">Username</th>
+            <th style="white-space: nowrap;">User ID</th>
+            <th style="white-space: nowrap;">Position</th>
+            <th style="white-space: nowrap;">Age</th>
+            <th style="white-space: nowrap;">Timezone</th>
+            <th style="white-space: nowrap;">Experience</th>
+            <th style="white-space: nowrap;">Reason</th>
+            <th style="white-space: nowrap;">Date (D/M/Y H/M/S)</th>
         </tr>
         </thead>
 
@@ -89,16 +95,16 @@
 
         <% if (staffApplications) { for (let x = 0; x < staffApplications.length; x++) { %>
 
-        <tr>
-            <td style="overflow: hidden;"><%= staffApplications[x].ID %></td>
-            <td style="white-space: nowrap; overflow: hidden;"><b><%= staffApplications[x].Username %></b></td>
-            <td style="white-space: nowrap; overflow: hidden;"><%= staffApplications[x].UserID %></td>
-            <td style="white-space: nowrap; overflow: hidden;"><b><%= staffApplications[x].Position %></b></td>
-            <td style="white-space: nowrap; overflow: hidden;"><b><%= staffApplications[x].Age %></b></td>
-            <td style="white-space: nowrap; overflow: hidden;"><%= staffApplications[x].TimeZone %></td>
-            <td style="overflow: hidden;"><b><%= staffApplications[x].Experience %></b></td>
-            <td style="overflow: hidden;"><b><%= staffApplications[x].Reason %></b></td>
-            <td style="white-space: nowrap; overflow: hidden;"><%= staffApplications[x].Date %></td>
+        <tr onclick="openMoreInfoBox(<%= staffApplications[x].ID %>)">
+            <td><%= staffApplications[x].ID %></td>
+            <td style="white-space: nowrap;"><b><%= staffApplications[x].Username %></b></td>
+            <td style="white-space: nowrap;"><%= staffApplications[x].UserID %></td>
+            <td style="white-space: nowrap;"><b><%= staffApplications[x].Position %></b></td>
+            <td style="white-space: nowrap;"><b><%= staffApplications[x].Age %></b></td>
+            <td style="white-space: nowrap;"><%= staffApplications[x].TimeZone %></td>
+            <td style="white-space: nowrap;"><b><%= staffApplications[x].Experience %></b></td>
+            <td style="white-space: nowrap;"><b><%= staffApplications[x].Reason %></b></td>
+            <td style="white-space: nowrap;"><%= staffApplications[x].Date %></td>
         </tr>
 
         <% } } %>
@@ -114,6 +120,46 @@
     <% } %>
 </section>
 
+<% if (staffApplications) { for (let x = 0; x < staffApplications.length; x++) { %>
+
+<div id="info_<%= staffApplications[x].ID %>" class="modal">
+    <div class="modal-background" onclick="closeMoreInfoBox('<%= staffApplications[x].ID %>')"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title"><b>User:</b> <%= staffApplications[x].Username %>
+                <i>(<%= staffApplications[x].UserID %>)</i></p>
+            <button class="delete" onclick="closeMoreInfoBox('<%= staffApplications[x].ID %>')"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="content">
+
+                <h2>&bull;&nbsp;<b>Age</b></h2>
+                <p><%= staffApplications[x].Age %></p>
+
+                <h2>&bull;&nbsp;<b>Time Zone: </b></h2>
+                <p><%= staffApplications[x].TimeZone %></p>
+
+                <h2>&bull;&nbsp;<b>Country</b></h2>
+                <p><%= staffApplications[x].Country %></p>
+
+                <h2>&bull;&nbsp;<b>Experience</b></h2>
+                <p><%= staffApplications[x].Experience %></p>
+
+                <h2>&bull;&nbsp;<b>Reason</b></h2>
+                <p><%= staffApplications[x].Reason %></p>
+
+                <p><b>Date of submission: <%= staffApplications[x].Date %></b></p>
+            </div>
+        </section>
+
+        <footer class="modal-card-foot">
+            <button class="button is-danger" onclick="closeMoreInfoBox('<%= staffApplications[x].ID %>')">Close</button>
+        </footer>
+    </div>
+</div>
+
+<% } } %>
+
 <%- include partials/footer.ejs %>
 
 <script>
@@ -124,6 +170,21 @@
             $(this).removeClass('is-selected');
         }
     );
+
+    function openMoreInfoBox(numberID) {
+
+        var modalInfo = document.getElementById(`info_${numberID}`);
+        if (!modalInfo) return;
+
+        modalInfo.setAttribute('class', 'modal is-active');
+    }
+
+    function closeMoreInfoBox(numberID) {
+        var modalInfo = document.getElementById(`info_${numberID}`);
+        if (!modalInfo) return;
+
+        modalInfo.setAttribute('class', 'modal');
+    }
 </script>
 
 </body>
