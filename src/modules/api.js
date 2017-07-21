@@ -36,7 +36,7 @@ exports.init = function (app) {
 
                     utils.submitApplication(username, userId, position, age, timezone, country, experience, reason).then(() => {
                         webhook.newApplication(username, position);
-                        res.status(200).send(`Successfully submit application for ${req.user.username}`);
+                        res.status(200).send(`Successfully submitted application for ${req.user.username}`);
 
                     }).catch(err => {
                         console.error(`Unable to submit application, Error: ${err.stack}`);

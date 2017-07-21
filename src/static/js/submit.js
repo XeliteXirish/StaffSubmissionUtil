@@ -65,7 +65,7 @@ function resetFields() {
 
 function submitSuccessfull() {
     console.log(`Successfully submit a staff application!`);
-    showSnackbar("You have successfully submit your application! Submissions are open, but we may not be taking on staff right now!");
+    showSnackbar("You have successfully submitted your application! Submissions are open, but we may not be taking on staff right now!");
     resetFields();
 }
 
