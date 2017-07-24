@@ -102,7 +102,7 @@ exports.submitApplication = function (username, userId, position, age, timezone,
  */
 exports.isUserModerator = function (userId) {
     return new Promise((resolve, reject) => {
-        let query = `SELECT Moderator FROM Users WHERE UserId=${index.db.escape(userId)}`;
+        let query = `SELECT Moderator FROM Users WHERE UserId=${index.db.escape(userId)} ORDER BY id DESC`;
         index.db.query(query, function (err, rows, fields) {
             if (err) {
                 console.error(`Error while checking if a user is a moderator, Error: ${err.stack}`);
