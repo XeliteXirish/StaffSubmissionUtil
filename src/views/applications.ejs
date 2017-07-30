@@ -21,6 +21,19 @@
     <meta name="theme-color" content="#00c0fc">
 
     <script src="js/jquery-2.2.0.min.js"></script>
+	
+			<!--   Code fixed by Galigus   -->
+		
+	<!-- this below limits the amount of text per table -->
+	<style>
+	td {
+	width: 100px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	}
+	</style>
+	
 </head>
 
 <body>
@@ -76,7 +89,7 @@
 </section>
 
 <section class="section">
-    <table class="table is-stripped is-bordered" style="width: 100%;">
+    <table class="table is-stripped is-bordered" style="width:100%;table-layout:fixed">
         <thead>
         <tr>
             <th>ID</th>
@@ -87,14 +100,14 @@
             <th style="white-space: nowrap;">Timezone</th>
             <th style="white-space: nowrap;">Experience</th>
             <th style="white-space: nowrap;">Reason</th>
-            <th style="white-space: nowrap;">Date (D/M/Y H/M/S)</th>
+            <th style="white-space: nowrap;">Date<p style="font-size: 10px; margin-top: -6px;">(D/M/Y H/M/S)</p></th>
         </tr>
         </thead>
 
         <tbody id="listTable">
-
+		
+		
         <% if (staffApplications) { for (let x = 0; x < staffApplications.length; x++) { %>
-
         <tr onclick="openMoreInfoBox(<%= staffApplications[x].ID %>)">
             <td><%= staffApplications[x].ID %></td>
             <td style="white-space: nowrap;"><b><%= staffApplications[x].Username %></b></td>
@@ -106,7 +119,6 @@
             <td style="white-space: nowrap;"><b><%= staffApplications[x].Reason %></b></td>
             <td style="white-space: nowrap;"><%= staffApplications[x].Date %></td>
         </tr>
-
         <% } } %>
         </tbody>
     </table>
@@ -116,12 +128,9 @@
         <b> ~ Sorry but it appears that no applications have been submitted yet :'( ~ </b>
         <br>
     </div>
-
     <% } %>
 </section>
-
 <% if (staffApplications) { for (let x = 0; x < staffApplications.length; x++) { %>
-
 <div id="info_<%= staffApplications[x].ID %>" class="modal">
     <div class="modal-background" onclick="closeMoreInfoBox('<%= staffApplications[x].ID %>')"></div>
     <div class="modal-card">
@@ -132,36 +141,26 @@
         </header>
         <section class="modal-card-body">
             <div class="content">
-
                 <h2>&bull;&nbsp;<b>Age</b></h2>
                 <p><%= staffApplications[x].Age %></p>
-
                 <h2>&bull;&nbsp;<b>Time Zone: </b></h2>
                 <p><%= staffApplications[x].TimeZone %></p>
-
                 <h2>&bull;&nbsp;<b>Country</b></h2>
                 <p><%= staffApplications[x].Country %></p>
-
                 <h2>&bull;&nbsp;<b>Experience</b></h2>
                 <p><%= staffApplications[x].Experience %></p>
-
                 <h2>&bull;&nbsp;<b>Reason</b></h2>
                 <p><%= staffApplications[x].Reason %></p>
-
                 <p><b>Date of submission: <%= staffApplications[x].Date %></b></p>
             </div>
         </section>
-
         <footer class="modal-card-foot">
             <button class="button is-danger" onclick="closeMoreInfoBox('<%= staffApplications[x].ID %>')">Close</button>
         </footer>
     </div>
 </div>
-
 <% } } %>
-
 <%- include partials/footer.ejs %>
-
 <script>
     $("tr").not(':first').hover(
         function () {
@@ -170,23 +169,16 @@
             $(this).removeClass('is-selected');
         }
     );
-
     function openMoreInfoBox(numberID) {
-
         var modalInfo = document.getElementById(`info_${numberID}`);
         if (!modalInfo) return;
-
         modalInfo.setAttribute('class', 'modal is-active');
     }
-
     function closeMoreInfoBox(numberID) {
         var modalInfo = document.getElementById(`info_${numberID}`);
         if (!modalInfo) return;
-
         modalInfo.setAttribute('class', 'modal');
     }
 </script>
-
 </body>
-
 </html>
