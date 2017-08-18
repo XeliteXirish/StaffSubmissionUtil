@@ -15,6 +15,6 @@ exports.init = function () {
 
 exports.newApplication = function (username, position) {
     if (isEnabled) {
-        webhook.send(`**${username}** has submit a staff application for **${position}**! Check it out ${index.config.host}!`)
+        webhook.send(`**${username}** has submit a staff application for **${position}**! Check it out ${index.config.host}`)
     }
 };
