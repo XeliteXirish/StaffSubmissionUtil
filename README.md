@@ -18,7 +18,7 @@ Here are some of the features this website provides:
 ```bash 
 npm install
 ``` 
-which will install all required dependencys
+which will install all required dependencies
 - Run the site with
 ```bash 
 npm run 
